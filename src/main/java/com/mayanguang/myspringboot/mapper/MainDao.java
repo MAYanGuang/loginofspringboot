@@ -48,7 +48,7 @@ public interface MainDao extends JpaRepository<MainBean, Integer> {
      * @param number
      * @return 符合模糊查询的所有用户+分页结果
      */
-    @Query(value = "select * from  test.springofpeople where f_name like :name limit :start,:number",
+    @Query(value = "select * from  test.springofpeople where f_name like concat('%',:name,'%') limit :start,:number",
             nativeQuery = true)
     List<MainBean> selectLikeUsers(@Param("name") String name,
                                    @Param("start") Integer start,
