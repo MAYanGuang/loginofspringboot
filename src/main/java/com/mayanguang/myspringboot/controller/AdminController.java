@@ -36,6 +36,22 @@ public class AdminController {
 
     }
 
+    @RequestMapping(value = "/ShowSelectUser",method = RequestMethod.POST)
+    public String ShowSelectUser(
+            @RequestParam(value = "name")String name,
+            @RequestParam(value = "page", defaultValue = "1") String start,
+            HttpSession session,Model model) {
+        if (session.getAttribute("admin").toString().length() > 0) {
+            model.addAttribute("users",mainServiceimpl.selectUser(name, Integer.parseInt(start)*5-5,5));
+            return "user/ShowUser";
+        } else {
+            return "user/loginagain";
+        }
+
+    }
+
+
+
     /**
      * 简单的身份验证
      *
@@ -55,6 +71,12 @@ public class AdminController {
         }
 
 
+    }
+
+    @RequestMapping(value = "/selectuser",method = RequestMethod.GET)
+    public String selectUser() {
+        System.out.println(121656515);
+        return "user/selectuser";
     }
 
     @RequestMapping(value = "/showUser", method = RequestMethod.GET)

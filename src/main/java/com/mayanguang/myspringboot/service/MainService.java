@@ -12,13 +12,9 @@ import java.util.List;
 public interface MainService {
     boolean addMain(MainBean mainBean);
 
-    MainBean getMainById(Integer id);
-
-
-
     boolean updateMain(MainBean mainBean);
 
     boolean deleteMain(Integer id);
 
-    List<MainBean> getUserList();
+
 }

@@ -19,7 +19,11 @@
     <link href="//fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 
-
+    <style>
+        body{
+            background: darkseagreen;
+        }
+    </style>
 
     <!-- //web font -->
 </head>
@@ -33,21 +37,31 @@
     <div class="snow background layered"></div>
 </div>
 <div class="top-buttons-agileinfo">
-    <a th:href="@{/index}" >回到主页</a>
+    <a th:href="@{/index}">回到主页</a>
 </div>
-<h1>欢迎你 管理员
+<h1>查询指定用户
 </h1>
 <div class="main-agileits">
     <!--form-stars-here-->
     <div class="form-w3-agile">
-        <h2 class="sub-agileits-w3layouts">管理列表</h2>
+        <table class="table table-hover">
 
-<ul>
-    <li> <a href="showUser">查询全部用户信息</a></li>
-    <li> <a href="selectuser">查询指定用户信息</a></li>
-</ul>
+            <tr>
 
-</div>
+                <th>搜索栏(输入要查询的用户名信息)</th>
+
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <form action="ShowSelectUser" method="post">
+                    <td><input type="text" th:value=" " name="name"></td>
+                    <td><input type="submit" th:value="查询"></td>
+                </form>
+            </tr>
+        </table>
+
+    </div>
 </div>
 <!--//form-ends-here-->
 <!-- copyright -->

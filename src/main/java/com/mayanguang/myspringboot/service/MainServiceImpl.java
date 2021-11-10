@@ -42,11 +42,7 @@ public class MainServiceImpl implements MainService {
         return flag;
     }
 
-    @Override
-    public MainBean getMainById(Integer id) {
-        //单个查找
-        return mainDao.findById(id).get();
-    }
+
 
    public MainBean getMainByName(String name){
         return mainDao.getBeanByName(name);
@@ -81,14 +77,19 @@ public class MainServiceImpl implements MainService {
         return flag;
     }
 
-    @Override
-    public List<MainBean> getUserList() {
-        return mainDao.findAll();
-    }
+
 
     public List<MainBean> getSomeUserList(Integer start,Integer number){
         return mainDao.getAll(start,number);
 
+    }
+
+    /**判断是不是已经存在用户名*/
+    public int getNameNumber(String name){
+        return mainDao.sameName(name);
+    }
+    public List<MainBean> selectUser(String name,Integer start,Integer number){
+        return mainDao.selectLikeUsers(name,start,number);
     }
 
 }

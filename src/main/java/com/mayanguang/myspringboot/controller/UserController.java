@@ -22,25 +22,33 @@ public class UserController {
 
 
     @RequestMapping(value = "/addUser")
-    public String addUser() {
+    public String addUser(Model model) {
         return "user/addUser";
     }
 
     //用户注册
     @RequestMapping(value = "/addUsers", method = RequestMethod.POST)
     public String jpaTest(
-//                @RequestParam(value = "name", defaultValue = "") String pName,
-//                @RequestParam(value = "age", defaultValue = "0") Integer pAge,
-//                @RequestParam(value = "pwd") String pPwd
-            MainBean mainBean
+            @RequestParam(value = "name", defaultValue = "") String pName,
+            @RequestParam(value = "age", defaultValue = "0") Integer pAge,
+            @RequestParam(value = "pwd") String pPwd,
+            Model model
+
     ) {
-//                MainBean mainBean = new MainBean();
-//                mainBean.setName(pName);
-//                mainBean.setAge(pAge);
-//                mainBean.setPwd(pPwd);
-//                System.out.println(mainBean.getName() + mainBean.getAge());
-        mainServiceimpl.addMain(mainBean);
-        return "user/Userindex";
+        if (mainServiceimpl.getNameNumber(pName) > 1) {
+            model.addAttribute("sameuser","存在相同用户名");
+            return "user/addUser";
+        } else {
+            System.out.println("长度是"+mainServiceimpl.getNameNumber(pName));
+            System.out.println("33333333333333333");
+            MainBean mainBean = new MainBean();
+            mainBean.setName(pName);
+            mainBean.setAge(pAge);
+            mainBean.setPwd(pPwd);
+            mainServiceimpl.addMain(mainBean);
+
+            return "user/Userindex";
+        }
 
 
     }
